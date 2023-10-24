@@ -15,7 +15,7 @@ class _EditPageState extends State<EditPage> {
   final _formkey = GlobalKey<FormState>();
   CollectionReference updateUser =
       FirebaseFirestore.instance.collection('Animal');
-  Future<void> _updateUser(id, nome, especie, raca, sexo, observacao ) {
+  Future<void> _updateUser(id, nome, especie, raca, sexo, observacao) {
     return updateUser
         .doc(id)
         .update({
@@ -45,7 +45,6 @@ class _EditPageState extends State<EditPage> {
               child: CircularProgressIndicator(),
             );
           }
-          //Getting Data From FireStore
           var data = snapshot.data?.data();
           var nome = data!['nome'];
           var especie = data['especie'];
@@ -120,7 +119,7 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                   ),
-                 Container(
+                  Container(
                     margin: const EdgeInsets.symmetric(
                       vertical: 18,
                       horizontal: 15,
@@ -140,7 +139,7 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                   ),
-                   Container(
+                  Container(
                     margin: const EdgeInsets.symmetric(
                       vertical: 18,
                       horizontal: 15,
@@ -167,7 +166,8 @@ class _EditPageState extends State<EditPage> {
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
                             setState(() {
-                              _updateUser(widget.docID, nome, especie, raca, sexo, observacao);
+                              _updateUser(widget.docID, nome, especie, raca,
+                                  sexo, observacao);
                               Navigator.pop(context);
                             });
                           }

@@ -73,15 +73,11 @@ class SignUpController extends GetxController {
   }
 
   Future postSignUpDetails() async {
-    String newDocId =
-        FirebaseAuth.instance.currentUser?.uid ?? ''; // ID dokumen yang baru
+    String newDocId = FirebaseAuth.instance.currentUser?.uid ?? '';
 
-// Membuat dokumen baru dengan ID baru
     DocumentReference newDocRef =
         FirebaseFirestore.instance.collection('user').doc(newDocId);
 
-
-// Menyimpan data ke dokumen baru
     await newDocRef.set({
       'docId': newDocId,
       'uid': FirebaseAuth.instance.currentUser!.uid,
@@ -98,10 +94,8 @@ class SignUpController extends GetxController {
 
   Future<bool> registerUser(String email, String password) async {
     try {
-      var response = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password
-      );
+      var response = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
 
       return true;
     } catch (error) {
