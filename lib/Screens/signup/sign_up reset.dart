@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:passeio_aumigo/Screens/signup/components/resetpassword.dart';
-
 import 'components/sign_up_body.dart';
 
 class SignUpReset extends StatefulWidget {

@@ -22,10 +22,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Getting Student all Records
   final Stream<QuerySnapshot> studentRecords =
       FirebaseFirestore.instance.collection('Animal').snapshots();
-  // For Deleting Users
   CollectionReference delUser = FirebaseFirestore.instance.collection('Animal');
   Future<void> _delete(id) {
     return delUser
@@ -48,7 +46,6 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           }
-          // Storing Data
           final List firebaseData = [];
           snapshot.data?.docs.map((DocumentSnapshot documentSnapshot) {
             Map store = documentSnapshot.data() as Map<String, dynamic>;
@@ -65,8 +62,8 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.purpleAccent),
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromARGB(255, 64, 114, 251)),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -76,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: const Text('Adicionar'),
+                      child: const Text('Adicionar Pet'),
                     ),
                   )
                 ],
@@ -95,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           TableCell(
                             child: Container(
-                              color: Colors.greenAccent,
+                              color: const Color.fromARGB(255, 105, 181, 240),
                               child: Center(
                                 child: Text(
                                   'Nome',
@@ -106,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           TableCell(
                             child: Container(
-                              color: Colors.greenAccent,
+                              color: const Color.fromARGB(255, 105, 181, 240),
                               child: Center(
                                 child: Text(
                                   'Raça',
@@ -117,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           TableCell(
                             child: Container(
-                              color: Colors.greenAccent,
+                              color: const Color.fromARGB(255, 105, 181, 240),
                               child: Center(
                                 child: Text(
                                   'Ações',
@@ -173,7 +170,6 @@ class _HomePageState extends State<HomePage> {
                                   IconButton(
                                     onPressed: () {
                                       _delete(firebaseData[i]['id']);
-                                      //print(firebaseData);
                                     },
                                     icon: const Icon(
                                       Icons.delete,
@@ -185,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                      ], //this is loop
+                      ],
                     ],
                   ),
                 ),
@@ -200,8 +196,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       },
                     ),
@@ -211,7 +206,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Passeadores()),
+                          MaterialPageRoute(
+                              builder: (context) => Passeadores()),
                         );
                       },
                     ),
@@ -221,7 +217,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Agendamento()),
+                          MaterialPageRoute(
+                              builder: (context) => Agendamento()),
                         );
                       },
                     ),
@@ -251,7 +248,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Notificacao()),
+                          MaterialPageRoute(
+                              builder: (context) => Notificacao()),
                         );
                       },
                     ),
@@ -265,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
-                     ListTile(
+                    ListTile(
                       leading: Icon(Icons.book),
                       title: Text('Sobre'),
                       onTap: () {
